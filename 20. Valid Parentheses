@@ -1,0 +1,33 @@
+/*
+Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
+
+An input string is valid if:
+
+Open brackets must be closed by the same type of brackets.
+Open brackets must be closed in the correct order.
+*/
+
+//有效括号问题//
+// ()[]{}(]类似问题的判断
+来源：力扣（LeetCode）
+链接：https://leetcode-cn.com/problems/valid-parentheses
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+
+
+Java Version1:
+class Solution {
+    public boolean isValid(String s) {
+        Stack <Character>stack = new Stack<Character>();
+        for(char c: s.toCharArray()){
+            if(!stack.isEmpty()){
+                char helper = stack.peek();
+                if(helper=='('&&c==')'||helper =='['&&c==']'||helper == '{'&&c=='}')
+                {   stack.pop();
+                    continue;
+                }
+            }
+            stack.push(c);
+        }
+        return stack.isEmpty();
+    }
+}
