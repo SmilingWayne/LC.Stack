@@ -1,0 +1,41 @@
+/*
+Given a string S of lowercase letters, a duplicate removal consists of choosing two adjacent and equal letters, and removing them.
+
+We repeatedly make duplicate removals on S until we no longer can.
+
+Return the final string after all such duplicate removals have been made.  It is guaranteed the answer is unique.
+
+来源：力扣（LeetCode）
+链接：https://leetcode-cn.com/problems/remove-all-adjacent-duplicates-in-string
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。*/
+/*
+Input: "abbaca"
+Output: "ca"
+*/
+
+Java.Version1:
+
+class Solution {
+    public String removeDuplicates(String S) {
+        Stack <Character> stack = new Stack<>();
+        StringBuilder sb = new StringBuilder();
+        char[] helper = S.toCharArray();
+        for(int i = 0 ; i < helper.length; i++ ){
+            if(stack.isEmpty()){
+                stack.push(helper[i]);
+            }
+            else{
+                if(stack.peek() == helper[i]){
+                    stack.pop();
+                }
+                else{
+                    stack.push(helper[i]);
+                }
+            }
+        }
+        for(Character c:stack){
+            sb.append(c);
+        }
+        return sb.toString();
+    }
+}
